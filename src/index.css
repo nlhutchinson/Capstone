@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgb(0, 0, 0);
-  background-color: #ffffff;
+  background-color: #adc5cd;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,7 +18,7 @@ img {
   height: 100px;
   width: auto;
   border-color: black;
-  border: 5px solid;
+  border: 2px solid;
 }
 
 a {
@@ -76,7 +76,8 @@ button:focus-visible {
 }
 
 section{
-  display: flex;
+  /* display: flex; */
+  height:fit-content;
 }
 /* body{
   background-color: rgb(66, 91, 67);
@@ -88,7 +89,8 @@ h2{
   margin-left:20px;
   margin-top: 4%;
   margin-bottom: 3%;
-  font-size: small;
+  font-size:medium;
+  font-weight: bold;
 }
 h1{
   padding:30px;
@@ -99,13 +101,20 @@ h1{
 p{
   color: rgb(0, 0, 0);
   text-transform: capitalize;
-  /* text-align: center; */
+  text-align: left;
   margin-left:20px;
+  width:auto;
   margin-top: 2%;
   margin-bottom: 1%;
+  background-color: #ffffff;
+  border-color: black;
+  border: 2px solid;
+  font-size: smaller;
+  font-weight: bold;
 }
 div{
-  
+  height: 300px;
+  width: auto;
 }
 button{
   margin-left:20px;
