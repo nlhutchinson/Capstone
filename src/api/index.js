@@ -198,8 +198,10 @@ const renderAllProducts = (productList) => {
         <h2>${product.title}</h2>
 
         <button class="details-button" data-id="${product.id}">See Details</button>
-        <button class="add-button" data-id="${product.id}">Add to Cart</button>
+       
         `;
+        // place in line 201
+        // <button class="add-button" data-id="${product.id}">Add to Cart</button>
 
     productContainer.appendChild(productElement);
 
@@ -214,17 +216,17 @@ const renderAllProducts = (productList) => {
     }
     });
 
-    const addButton = productElement.querySelector('.add-button');
-    addButton.addEventListener('click', async (event) => {
-      try {
-          const id = event.target.dataset.id;
-          const newProduct = await fetchSingleProduct(product.id);
-          updateCart(newProduct);
+    // const addButton = productElement.querySelector('.add-button');
+    // addButton.addEventListener('click', async (event) => {
+    //   try {
+    //       const id = event.target.dataset.id;
+    //       const newProduct = await fetchSingleProduct(product.id);
+    //       updateCart(newProduct);
         
-      } catch (error) {
-        console.error(error);
-      }
-    });
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // });
 
 });
 } catch (error) {
@@ -245,11 +247,11 @@ const init = async () => {
     const products = await fetchAllProducts();
     renderAllProducts(products);
     console.log(products);
-    const carts = await fetchAllCarts();
-    renderAllCarts(carts);
-    console.log(carts);
+    // const carts = await fetchAllCarts();
+    // renderAllCarts(carts);
+    // console.log(carts);
 
-    renderNewProductForm();
+    // renderNewProductForm();
 }
 
 init();

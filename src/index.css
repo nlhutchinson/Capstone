@@ -92,6 +92,9 @@ h2{
   margin-bottom: 3%;
   font-size:medium;
   font-weight: bold;
+  background-color: #ffffff;
+  border-color: black;
+  border: 2px solid;
 }
 h1{
   padding:30px;

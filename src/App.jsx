@@ -10,10 +10,6 @@ function App() {
     <div className="App">
       <h1>My Store</h1>
       <Nav />
-      {/* <Routes>
-        <Route path="/" element={<allProducts />} />
-        <Route path="/:id" element={<singleProduct />} />
-      </Routes> */}
     </div>
   );
 }
