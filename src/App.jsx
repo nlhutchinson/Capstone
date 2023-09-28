@@ -1,7 +1,7 @@
 import "./App.css";
-import AllProducts from "./components/allProducts";
-import SingleProduct from "./components/singleProduct";
-import Nav from "./components/nav";
+import AllProducts from "./files/allProducts";
+import SingleProduct from "./files/singleProduct";
+import Nav from "./files/nav";
 import { useState } from 'react'
 
 function App() {

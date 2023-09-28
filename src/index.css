@@ -15,10 +15,11 @@
 }
 
 img {
-  height: 100px;
+  height: 200px;
   width: auto;
   border-color: black;
   border: 2px solid;
+  margin-left:100px;
 }
 
 a {
@@ -113,7 +114,7 @@ p{
   font-weight: bold;
 }
 div{
-  height: 300px;
+  height: 400px;
   width: auto;
 }
 button{

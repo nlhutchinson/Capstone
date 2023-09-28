@@ -1,7 +1,7 @@
 export default function Nav() {
   return (
     <div>
-      {/* <Link to="/">Home</Link> */}
+      {/* <Link to="/">Store</Link> */}
     </div>
   );
 }
