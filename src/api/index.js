@@ -2,7 +2,7 @@ const baseUrl = 'https://fakestoreapi.com'
 // https://fakestoreapi.com/products
 const productContainer = document.getElementById('all-products-container');
 const newProductFormContainer = document.getElementById('new-product-form');
-const rosterContainer = document.getElementById('roster-container');
+const cartContainer = document.getElementById('cart-container');
 const detailContainer = document.getElementById('detail-container');
 
 // export async function fetchAllProducts() {
@@ -78,6 +78,35 @@ const fetchSingleProduct = async (productId) => {
     }
 };
 
+const fetchAllCarts= async () => {
+  try {
+       const response = await fetch(`${baseUrl}/carts`);
+    const carts = await response.json();
+    return carts;
+
+  } catch (error) {
+      console.error(error);
+  }
+};
+
+const renderAllCarts = (cartList) => {
+  try {
+      cartContainer.innerHTML= '';
+       cartList.forEach((cart) => {
+     const cartElement = document.createElement('div');
+     cartElement.classList.add('cart');
+      cartElement.innerHTML = `
+      <img src =${cart.image} class = img/>
+      <h2>${cart.title}</h2>
+      `;
+
+  cartContainer.appendChild(cartElement);
+});
+} catch (error) {
+console.error(error);
+}
+};
+
 const addNewProduct = async (productObj) => {
     try {
         const response =await fetch (`${baseUrl}/${id}`,{
@@ -111,10 +140,10 @@ const updateDetails = (productId) => {
         const detailElement = document.createElement('div');
         detailElement.classList.add('product');
         detailElement.innerHTML = `
-        <img src =${productId.imageUrl} class = img/>
+        <img src =${productId.image} class = img/>
         <h2>${productId.title}</h2>
-        <p>Breed: ${productId.price}</p>
-        <p>Status: ${productId.description}</p>
+        <p>Price: $${productId.price}</p>
+        <p>Description: ${productId.description}</p>
         <button class="remove-button" data-id="${productId.id}">Close</button> 
         `;
         detailContainer.appendChild(detailElement);
@@ -129,26 +158,25 @@ const updateDetails = (productId) => {
         });
 
   } catch (error) {
-      console.error('Uh oh, trouble updating the roster!', error);
+      console.error('Error', error);
   }
 }
 
-const updateRoster = (productId) => {
+const updateCart = (productId) => {
   try {
         //console.log(productId);
-        const rosterElement = document.createElement('div');
-        rosterElement.classList.add('product');
-        rosterElement.innerHTML = `
+        const cartElement = document.createElement('div');
+        cartElement.classList.add('product');
+        cartElement.innerHTML = `
         <img src =${productId.image} class = img/>
         <h2>${productId.title}</h2>
-        <button class="remove-button" data-id="${productId.id}">Remove from Roster </button> 
-        `;
-        rosterContainer.appendChild(rosterElement);
+        <button class="remove-button" data-id="${productId.id}">Remove from Cart </button>`
+        cartContainer.appendChild(cartElement);
 
-        const removeButton = rosterElement.querySelector('.remove-button');
+        const removeButton = cartElement.querySelector('.remove-button');
         removeButton.addEventListener('click', async (event) => {
         try {
-        rosterContainer.removeChild(rosterElement);
+        cartContainer.removeChild(cartElement);
         } catch (error) {
         console.error(error);
         }
@@ -170,7 +198,7 @@ const renderAllProducts = (productList) => {
         <h2>${product.title}</h2>
 
         <button class="details-button" data-id="${product.id}">See Details</button>
-        <button class="add-button" data-id="${product.id}">Add to Roster</button>
+        <button class="add-button" data-id="${product.id}">Add to Cart</button>
         `;
 
     productContainer.appendChild(productElement);
@@ -191,7 +219,7 @@ const renderAllProducts = (productList) => {
       try {
           const id = event.target.dataset.id;
           const newProduct = await fetchSingleProduct(product.id);
-          updateRoster(newProduct);
+          updateCart(newProduct);
         
       } catch (error) {
         console.error(error);
@@ -205,11 +233,11 @@ const renderAllProducts = (productList) => {
 };
          
                    
-const renderNewProductForm = (playerId) => {
+const renderNewProductForm = (productId) => {
     try {
         
     } catch (error) {
-        console.error('Uh oh, trouble rendering the new product form!', error);
+        console.error('Error', error);
     }
 }
 
@@ -217,6 +245,9 @@ const init = async () => {
     const products = await fetchAllProducts();
     renderAllProducts(products);
     console.log(products);
+    const carts = await fetchAllCarts();
+    renderAllCarts(carts);
+    console.log(carts);
 
     renderNewProductForm();
 }
